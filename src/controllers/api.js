@@ -41,5 +41,13 @@ module.exports = {
         } catch (err) {
             response.error(res, 404, 'Failed!')
         }
-    }
+    },
+    get1: async (req, res) => {
+        try {
+            const result = await model.get1()
+            response.success(res, 200, result)
+        } catch (err) {
+            response.error(res, 404, 'Failed!')
+        }
+    },
 }

@@ -64,7 +64,7 @@ CREATE TABLE `nilai` (
 /*Data for the table `nilai` */
 
 insert  into `nilai`(`id_mahasiswa`,`id_mata_kuliah`,`nilai`,`keterangan`) values 
-(1,1,'100','nyontek');
+(1,1,'90','nyontek terus');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
