@@ -10,9 +10,9 @@ module.exports = {
             })
         })
     },
-    updateNilai: (data, id) => {
+    updateNilai: (data, id_mahasiswa) => {
         return new Promise((resolve, reject) => {
-            db.query('UPDATE nilai SET ? WHERE id = ?', [data, id])
+            db.query('UPDATE nilai SET ? WHERE id_mahasiswa = ?', [data, id_mahasiswa])
             db.query('SELECT * FROM nilai', (err, result) => {
                 if (err) reject(new (Error)())
                 resolve(result)
@@ -21,8 +21,17 @@ module.exports = {
     },
     deleteNilai: (id) => {
         return new Promise((resolve, reject) => {
+            db.query('DELETE FROM nilai WHERE id_mahasiswa = ?', id)
             db.query('SELECT * FROM nilai', (err, result) => {
                 if (err) reject(new (Error)())
+                resolve(result)
+            })
+        })
+    },
+    checkIdMhs: (id_mahasiswa) => {
+        return new Promise((resolve, reject) => {
+            db.query('SELECT * FROM nilai WHERE id_mahasiswa = ?', id_mahasiswa, (err, result) => {
+                if (err) reject(new Error(err))
                 resolve(result)
             })
         })

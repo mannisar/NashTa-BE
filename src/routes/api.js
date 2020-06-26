@@ -11,8 +11,8 @@ const {
 } = require('../controllers/api')
 
 Route
-    .post('/', createNilai)
-    .patch('/:id', updateNilai)
-    .delete('/:id', deleteNilai)
+    .post('/nilai', createNilai)
+    .put('/nilai', updateNilai)
+    .delete('/nilai/:id', deleteNilai)
 
 module.exports = Route

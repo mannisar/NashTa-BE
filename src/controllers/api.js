@@ -4,8 +4,11 @@ const response = require('../helpers/response')
 module.exports = {
     createNilai: async (req, res) => {
         try {
-            const name = req.body.name
-            const data = { name }
+            const id_mahasiswa = req.body.id_mahasiswa
+            const id_mata_kuliah = req.body.id_mata_kuliah
+            const nilai = req.body.nilai
+            const keterangan = req.body.keterangan
+            const data = { id_mahasiswa, id_mata_kuliah, nilai, keterangan }
 
             const result = await model.createNilai(data)
             response.success(res, 200, result)
@@ -14,13 +17,17 @@ module.exports = {
         }
     },
     updateNilai: async (req, res) => {
-        try {
-            const id = req.params.id
-            const name = req.body.name
-            const data = { name }
+        const check = await model.checkIdMhs(req.body.id_mahasiswa)
+        const dataNilai = check[0]
+        const id_mahasiswa = req.body.id_mahasiswa
+        const id_mata_kuliah = req.body.id_mata_kuliah
+        const nilai = req.body.nilai
+        const keterangan = req.body.keterangan
+        const data = { id_mahasiswa, id_mata_kuliah, nilai, keterangan }
 
-            const result = await model.updateNilai(data, id)
-            response.success(res, 200, result)
+        const result = await model.updateNilai(data, dataNilai.id_mahasiswa)
+        response.success(res, 200, result)
+        try {
         } catch (err) {
             response.error(res, 404, 'Failed!')
         }
